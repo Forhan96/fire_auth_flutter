@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "642154806098",
+    "project_id": "fireauth-f8168",
+    "storage_bucket": "fireauth-f8168.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642154806098:android:8057314d884b154759988b",
+        "android_client_info": {
+          "package_name": "com.example.fire_auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642154806098-63ch4dbsolheb7rptgb15lfr9mecq4dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFsYhh25qjioWr7SLr5JnK1r1yE1jmzTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642154806098-63ch4dbsolheb7rptgb15lfr9mecq4dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
