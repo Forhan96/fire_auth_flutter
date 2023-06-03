@@ -18,9 +18,9 @@ class _SplashScreenState extends State<SplashScreen> {
     bool isLoggedIn = await authProvider.isUserLoggedIn();
 
     if (isLoggedIn) {
-      Navigator.pushReplacementNamed(context, Routes.HOME_SCREEN);
+      Navigator.pushReplacementNamed(context, Routes.homeScreen);
     } else {
-      Navigator.pushReplacementNamed(context, Routes.SIGN_IN_SCREEN);
+      Navigator.pushReplacementNamed(context, Routes.signInScreen);
     }
   }
 

@@ -14,6 +14,11 @@ class HomeProvider extends ChangeNotifier {
   ProductListResponse? _productListResponse;
   List<Product> _productList = [];
 
+
+  ///Getters
+
+  List<Product> get productList => _productList;
+
   Future<void> getProductList({bool refresh = false}) async {
     CommonUtil.internetCheck().then((value) async {
       if(refresh){

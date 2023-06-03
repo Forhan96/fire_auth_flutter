@@ -36,7 +36,7 @@ class _FireAuthAppState extends State<FireAuthApp> {
         ),
         // home: const SplashScreen(),
         onGenerateRoute: RouterHelper.router.generator,
-        initialRoute: Routes.SPLASH_SCREEN,
+        initialRoute: Routes.splashScreen,
       ),
     );
   }

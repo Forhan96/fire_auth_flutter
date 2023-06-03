@@ -1,6 +1,7 @@
 import 'package:fire_auth/router/routes.dart';
 import 'package:fire_auth/screens/home_screen.dart';
 import 'package:fire_auth/screens/otp_screen.dart';
+import 'package:fire_auth/screens/setting_screen.dart';
 import 'package:fire_auth/screens/sign_in_screen.dart';
 import 'package:fire_auth/screens/splash_screen.dart';
 import 'package:fluro/fluro.dart';
@@ -17,39 +18,40 @@ class RouterHelper {
   static final Handler _otpScreenHandler = Handler(handlerFunc: (context, parameters) => OtpScreen());
 
   static final Handler _homeScreenHandler = Handler(handlerFunc: (context, parameters) => HomeScreen());
+  static final Handler _settingsScreenHandler = Handler(handlerFunc: (context, parameters) => SettingScreen());
 
   static final Handler _notFoundHandler = Handler(handlerFunc: (context, parameters) {
     print("No Router Found!");
     return null;
   });
   void setupRouter() {
-    //account
-    // router.define(
-    //   Routes.AUTH_WRAPPER,
-    //   handler: _authWrapperHandler,
-    //   transitionType: TransitionType.fadeIn,
-    // );
     router.define(
-      Routes.SPLASH_SCREEN,
+      Routes.splashScreen,
       handler: _splashScreenHandler,
       transitionType: TransitionType.fadeIn,
     );
     router.define(
-      Routes.SIGN_IN_SCREEN,
+      Routes.signInScreen,
       handler: _signInScreenHandler,
       transitionType: TransitionType.fadeIn,
     );
 
     router.define(
-      Routes.OTP_SCREEN,
+      Routes.otpScreen,
       handler: _otpScreenHandler,
       transitionType: TransitionType.fadeIn,
     );
 
     router.define(
-      Routes.HOME_SCREEN,
+      Routes.homeScreen,
       handler: _homeScreenHandler,
       transitionType: TransitionType.fadeIn,
+    );
+
+    router.define(
+      Routes.settingsScreen,
+      handler: _settingsScreenHandler,
+      transitionType: TransitionType.inFromRight,
     );
 
     router.notFoundHandler = _notFoundHandler;

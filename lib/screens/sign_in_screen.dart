@@ -72,7 +72,7 @@ class SignInScreen extends StatelessWidget with InputValidationMixin {
                       // Fluttertoast.showToast(
                       //   msg: "Verification code is sent.",
                       // );
-                      Navigator.pushNamed(context, Routes.OTP_SCREEN);
+                      Navigator.pushNamed(context, Routes.otpScreen);
                     });
                   },
                 ),

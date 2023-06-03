@@ -44,7 +44,7 @@ class OtpScreen extends StatelessWidget {
                 onCompleted: (otp) {
                   AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
                   authProvider.verifyOTP(otp).then((value) {
-                    Navigator.pushNamedAndRemoveUntil(context, Routes.HOME_SCREEN, (route) => false);
+                    Navigator.pushNamedAndRemoveUntil(context, Routes.homeScreen, (route) => false);
                     authProvider.sendNotification(authProvider.token ?? "", "Logged in successfully", 'Login Notification');
                   });
                 },

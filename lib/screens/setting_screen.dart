@@ -45,7 +45,7 @@ class SettingScreen extends StatelessWidget {
                 text: "Sign Out",
                 onPressed: () {
                   Provider.of<AuthProvider>(context, listen: false).signOut();
-                  Navigator.pushNamedAndRemoveUntil(context, Routes.SIGN_IN_SCREEN, (_) => false);
+                  Navigator.pushNamedAndRemoveUntil(context, Routes.signInScreen, (_) => false);
                 },
               ),
             ],

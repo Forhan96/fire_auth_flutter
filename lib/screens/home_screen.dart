@@ -2,6 +2,8 @@ import 'package:fire_auth/components/default_button.dart';
 import 'package:fire_auth/providers/auth_provider.dart';
 import 'package:fire_auth/providers/home_provider.dart';
 import 'package:fire_auth/router/routes.dart';
+import 'package:fire_auth/utils/color_const.dart';
+import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -22,60 +24,99 @@ class _HomeScreenState extends State<HomeScreen> {
       await homeProvider.getProductList(refresh: true);
     });
   }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          child: Column(
-            children: [
-              SizedBox(
-                height: 100.h,
+    return Consumer<HomeProvider>(
+      builder: (context, homeProvider, child) {
+        return Scaffold(
+          appBar: _buildAppBar(),
+          body: SafeArea(
+            child: GridView.builder(
+              padding: EdgeInsets.symmetric(
+                vertical: 16.h,
+                horizontal: 16.w,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    "Signed In",
-                    style: TextStyle(fontSize: 24),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 200,
+                // childAspectRatio: 3 / 2,
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+              ),
+              itemCount: homeProvider.productList.length,
+              itemBuilder: (BuildContext ctx, index) {
+                return Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(15),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.2),
+                        spreadRadius: 1,
+                        blurRadius: 5,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 50.h,
-              ),
-              DefaultButton(
-                text: "Get List",
-                onPressed: () {
-                  HomeProvider homeProvider = Provider.of<HomeProvider>(context, listen: false);
-                  homeProvider.getProductList(refresh: true);
-                },
-              ),
-              SizedBox(
-                height: 50.h,
-              ),
-              DefaultButton(
-                text: "Try Notification",
-                onPressed: () {
-                  AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
-                  authProvider.sendNotification(authProvider.token ?? "", "Logged in successfully", 'Login Notification');
-                },
-              ),
-              SizedBox(
-                height: 50.h,
-              ),
-              DefaultButton(
-                text: "Sign Out",
-                onPressed: () {
-                  Provider.of<AuthProvider>(context, listen: false).signOut();
-                  Navigator.pushNamedAndRemoveUntil(context, Routes.SIGN_IN_SCREEN, (_) => false);
-                },
-              ),
-            ],
+                  child: Text(homeProvider.productList[index].title ?? ""),
+                );
+              },
+            ),
           ),
-        ),
+        );
+      },
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      elevation: 0,
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.white,
+      title: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const <Widget>[
+          SizedBox(
+            width: 4,
+          ),
+          CircleAvatar(
+            backgroundImage: NetworkImage("https://picsum.photos/191"),
+            maxRadius: 20,
+          ),
+          SizedBox(
+            width: 12,
+          ),
+          Text(
+            "Forhan Ahmed",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: AppColors.primaryColor,
+            ),
+          ),
+        ],
       ),
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.shopping_cart,
+            color: AppColors.primaryColor,
+          ),
+          onPressed: () {
+            // do something
+          },
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.settings,
+            color: AppColors.primaryColor,
+          ),
+          onPressed: () {
+            Navigator.pushNamed(context, Routes.settingsScreen);
+          },
+        ),
+      ],
     );
   }
 }
