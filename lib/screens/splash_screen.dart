@@ -1,8 +1,8 @@
-import 'package:fire_auth/components/loading_animation.dart';
 import 'package:fire_auth/providers/auth_provider.dart';
 import 'package:fire_auth/router/routes.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fire_auth/utils/color_const.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -15,8 +15,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   void checkState() async {
     AuthProvider authProvider = Provider.of<AuthProvider>(context, listen: false);
-    // bool isLoggedIn = await authProvider.isUserSignedIn();
-    bool isLoggedIn = false;
+    bool isLoggedIn = await authProvider.isUserLoggedIn();
 
     if (isLoggedIn) {
       Navigator.pushReplacementNamed(context, Routes.HOME_SCREEN);
@@ -28,16 +27,19 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 3), () {
       checkState();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Loader(),
+        child: SpinKitWaveSpinner(
+          size: 100,
+          color: AppColors.primaryColor,
+        ),
       ),
     );
   }

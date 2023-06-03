@@ -67,14 +67,22 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<bool> isUserLoggedIn() async {
+    if (_firebaseAuth.currentUser != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Future<void> signOut() async {
     await _firebaseAuth.signOut();
     notifyListeners();
   }
 
   Future<void> sendNotification(String token, String body, String title) async {
-    bool isallowed = await AwesomeNotifications().isNotificationAllowed();
-    if (!isallowed) {
+    bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+    if (!isAllowed) {
       //no permission of local notification
       AwesomeNotifications().requestPermissionToSendNotifications();
     } else {

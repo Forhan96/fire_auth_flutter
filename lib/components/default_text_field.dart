@@ -73,11 +73,11 @@ class _InputFieldState extends State<DefaultTextField> {
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 30),
-          borderSide: BorderSide(color: widget.borderColor ?? Colors.transparent, width: 0.5),
+          borderSide: BorderSide(color: Colors.red, width: 0.5),
         ),
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(widget.borderRadius ?? 30),
-          borderSide: BorderSide(color: widget.borderColor ?? Colors.transparent, width: 0.5),
+          borderSide: BorderSide(color: Colors.red, width: 0.5),
         ),
         filled: true,
         fillColor: widget.fillColor ?? AppColors.white.withOpacity(0.8),

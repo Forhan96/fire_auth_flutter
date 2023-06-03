@@ -25,6 +25,7 @@ class DefaultButton extends StatelessWidget {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: color ?? AppColors.brandGreen,
+          shape: StadiumBorder(),
         ),
         onPressed: onPressed as void Function()?,
         child: Text(
