@@ -27,7 +27,6 @@ class HomeProvider extends ChangeNotifier {
       _productListResponse = await _apiService.getProductList();
       notifyListeners();
       _productList.addAll(_productListResponse?.products ?? []);
-      print(_productList);
       notifyListeners();
     });
   }

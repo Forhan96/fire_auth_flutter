@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.fire_auth">
-   <application
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
         android:label="fire_auth"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
@@ -20,6 +22,9 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
+            <meta-data
+                android:name="flutterEmbedding"
+                android:value="2" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

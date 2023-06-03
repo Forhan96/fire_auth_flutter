@@ -38,24 +38,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildBody(HomeProvider homeProvider) {
     return SafeArea(
-          child: GridView.builder(
-            padding: EdgeInsets.symmetric(
-              vertical: 16.h,
-              horizontal: 16.w,
-            ),
-            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              // childAspectRatio: 3 / 2,
-              crossAxisSpacing: 20.w,
-              mainAxisSpacing: 20.h,
-            ),
-            itemCount: homeProvider.productList.length,
-            itemBuilder: (BuildContext ctx, index) {
-              Product? item = homeProvider.productList[index];
-              return ProductListItem(item: item);
+      child: GridView.builder(
+        padding: EdgeInsets.symmetric(
+          vertical: 16.h,
+          horizontal: 16.w,
+        ),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          // childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20.w,
+          mainAxisSpacing: 20.h,
+        ),
+        itemCount: homeProvider.productList.length,
+        itemBuilder: (BuildContext ctx, index) {
+          Product? item = homeProvider.productList[index];
+          return ProductListItem(
+            onTap: () {
+              Navigator.pushNamed(context, Routes.productDetailsScreen, arguments: item.toJson());
             },
-          ),
-        );
+            item: item,
+          );
+        },
+      ),
+    );
   }
 
   AppBar _buildAppBar() {
@@ -93,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
             color: AppColors.primaryColor,
           ),
           onPressed: () {
-            // do something
+            Navigator.pushNamed(context, Routes.cartScreen);
           },
         ),
         IconButton(

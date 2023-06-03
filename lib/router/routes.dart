@@ -4,4 +4,6 @@ class Routes {
   static String signInScreen = "/sign-in";
   static String otpScreen = "/otp";
   static String settingsScreen = "/settings";
+  static String productDetailsScreen = "/product-details";
+  static String cartScreen = "/cart-items";
 }
