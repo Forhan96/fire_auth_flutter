@@ -1,5 +1,6 @@
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -91,7 +92,7 @@ class AuthProvider with ChangeNotifier {
           content: NotificationContent(
         //simgple notification
         id: 123,
-        channelKey: 'basic', //set configuration wuth key "basic"
+        channelKey: 'basic', //set configuration with key "basic"
         title: 'Welcome to the App',
         body: 'You signed in successfully',
       ));
