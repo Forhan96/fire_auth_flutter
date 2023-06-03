@@ -10,7 +10,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
-class SignInScreen extends StatelessWidget with InputValidationMixin{
+class SignInScreen extends StatelessWidget with InputValidationMixin {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
@@ -33,8 +33,9 @@ class SignInScreen extends StatelessWidget with InputValidationMixin{
                   style: TextStyle(fontSize: 24),
                 ),
                 Lottie.network(
-                    'https://assets6.lottiefiles.com/packages/lf20_7ciiygtc.json',
-                height: 200.h),
+                  'https://assets6.lottiefiles.com/packages/lf20_7ciiygtc.json',
+                  height: 200.h,
+                ),
                 SizedBox(
                   height: 50.h,
                 ),
@@ -64,7 +65,7 @@ class SignInScreen extends StatelessWidget with InputValidationMixin{
                     //   Fluttertoast.showToast(msg: "Invalid Phone Number");
                     //   return;
                     // }
-                    if(!formKey.currentState!.validate()){
+                    if (!formKey.currentState!.validate()) {
                       return;
                     }
                     Provider.of<AuthProvider>(context, listen: false).verifyPhone(_phoneController.text).then((value) {
