@@ -1,9 +1,8 @@
-import 'package:fire_auth/components/default_button.dart';
-import 'package:fire_auth/providers/auth_provider.dart';
+import 'package:fire_auth/components/product_list_item.dart';
+import 'package:fire_auth/models/product.dart';
 import 'package:fire_auth/providers/home_provider.dart';
 import 'package:fire_auth/router/routes.dart';
 import 'package:fire_auth/utils/color_const.dart';
-import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -31,42 +30,32 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (context, homeProvider, child) {
         return Scaffold(
           appBar: _buildAppBar(),
-          body: SafeArea(
-            child: GridView.builder(
-              padding: EdgeInsets.symmetric(
-                vertical: 16.h,
-                horizontal: 16.w,
-              ),
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 200,
-                // childAspectRatio: 3 / 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-              ),
-              itemCount: homeProvider.productList.length,
-              itemBuilder: (BuildContext ctx, index) {
-                return Container(
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.2),
-                        spreadRadius: 1,
-                        blurRadius: 5,
-                        offset: const Offset(0, 5),
-                      ),
-                    ],
-                  ),
-                  child: Text(homeProvider.productList[index].title ?? ""),
-                );
-              },
-            ),
-          ),
+          body: _buildBody(homeProvider),
         );
       },
     );
+  }
+
+  Widget _buildBody(HomeProvider homeProvider) {
+    return SafeArea(
+          child: GridView.builder(
+            padding: EdgeInsets.symmetric(
+              vertical: 16.h,
+              horizontal: 16.w,
+            ),
+            gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 200,
+              // childAspectRatio: 3 / 2,
+              crossAxisSpacing: 20.w,
+              mainAxisSpacing: 20.h,
+            ),
+            itemCount: homeProvider.productList.length,
+            itemBuilder: (BuildContext ctx, index) {
+              Product? item = homeProvider.productList[index];
+              return ProductListItem(item: item);
+            },
+          ),
+        );
   }
 
   AppBar _buildAppBar() {
